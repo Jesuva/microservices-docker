@@ -1,0 +1,21 @@
+version: '1.0'
+services:
+  product-microservice:
+    image: jes003/product-microservice:0.0.1
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - cart-module-network
+  cart-microservice:
+    image: jes003/cart-microservice:0.0.1
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on:
+      - product-microservice
+    networks:
+      - cart-module-network
+networks:
+  cart-module-network:
+
